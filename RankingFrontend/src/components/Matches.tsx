@@ -23,6 +23,9 @@ const Matches = () => {
             <span className="match-winner">{match.winner}</span>
             <span className="match-verb">defeated</span>
             <span className="match-loser">{match.loser}</span>
+            <span className="match-time">
+              ({new Date(match.time).toLocaleTimeString("da-DK")})
+            </span>
           </li>
         ))}
       </ul>

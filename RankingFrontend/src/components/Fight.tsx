@@ -5,20 +5,11 @@ import { JoinFight } from "../hooks/JoinFight";
 
 interface FightProps {
   player: string;
+  onlinePlayers: string[];
 }
 
-const Fight = ({ player }: FightProps) => {
-  const [onlinePlayers, setOnlinePlayers] = useState<string[]>([]);
+const Fight = ({ player, onlinePlayers }: FightProps) => {
   const [selectedOpponent, setSelectedOpponent] = useState<string | null>(null);
-
-  const fetchOnlinePlayers = async () => {
-    const data = await GetOnline();
-    setOnlinePlayers(data);
-  };
-
-  useEffect(() => {
-    fetchOnlinePlayers();
-  }, []);
 
   return (
     <div>
@@ -28,9 +19,9 @@ const Fight = ({ player }: FightProps) => {
       <select
         id="opponent"
         value={selectedOpponent ?? ""}
-        onFocus={fetchOnlinePlayers}
         onChange={(e) => setSelectedOpponent(e.target.value || null)}
       >
+        <option value="">Select an opponent...</option>
         {onlinePlayers
           .filter((name) => name !== player)
           .map((name) => (

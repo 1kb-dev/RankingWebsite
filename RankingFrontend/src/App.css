@@ -1,8 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+/* ---------- Base ---------- */
+:root {
+  --blue: #007bff;
+  --blue-dark: #004080;
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-700: #495057;
+  --red: #ff4d4d;
+}
+
+body {
+  margin: 0;
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  font-family: "Roboto", "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+h1 {
+  color: var(--blue-dark);
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+h2 {
+  color: var(--blue-dark);
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+p,
+label,
+li {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray-700);
+}
+
 /* ---------- Layout ---------- */
 #root {
   display: grid;
   grid-template-columns: repeat(2, 30rem); /* ranking + join side by side */
-  justify-content: center; /* centers the whole grid on x */
+  justify-content: center;
   align-items: start;
   gap: 40px;
   padding: 100px 16px 40px;
@@ -19,20 +64,73 @@
   }
 }
 
-/* ---------- Shared panel styles ---------- */
+/* ---------- Shared panel (card) styles ---------- */
 .ranking-table,
 .game-join,
+.welcome-message,
 .matches {
   width: min(30rem, 100%);
   box-sizing: border-box;
   padding: 20px;
-  color: rgb(231, 141, 24);
+  background-color: #fff;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  color: var(--gray-700);
 }
 
-h1 {
-  color: chocolate;
-  font-size: 2rem;
-  margin-bottom: 20px;
+/* ---------- Form controls ---------- */
+input,
+select {
+  box-sizing: border-box;
+  padding: 8px 12px;
+  margin: 4px 8px 4px 0;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--gray-700);
+  background-color: #fff;
+  border: 1px solid var(--gray-300);
+  border-radius: 4px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+}
+
+button {
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--blue-dark);
+}
+
+button:disabled {
+  background-color: var(--gray-300);
+  color: var(--gray-700);
+  cursor: not-allowed;
+}
+
+/* ---------- Error / important messages ---------- */
+.error {
+  color: var(--red);
+  font-weight: 500;
 }
 
 /* ---------- Ranking table ---------- */
@@ -48,30 +146,23 @@ h1 {
   justify-content: flex-start;
   gap: 8px;
   counter-increment: rank;
-  color: rgb(231, 141, 24);
-  font-weight: bold;
-  padding-left: clamp(16px, 8vw, 100px);
-  padding-top: 10px;
+  font-weight: 700;
+  padding: 10px 12px;
   margin-bottom: 8px;
+  background-color: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: 4px;
 }
 
 .ranking-table li::before {
   content: counter(rank) ".";
-}
-
-/* ---------- Join game / welcome ---------- */
-.welcome-message {
-  width: min(30rem, 100%);
-  box-sizing: border-box;
-  padding: 20px;
-  color: chocolate;
+  color: var(--blue-dark);
 }
 
 /* ---------- Matches ---------- */
 .matches {
-  grid-column: 1 / -1; /* takes its own row below the other two */
-  justify-self: center; /* centered on the x axis */
-  border-radius: 8px;
+  grid-column: 1 / -1; /* own row below the other two */
+  justify-self: center;
 }
 
 .matches ul {
@@ -86,25 +177,25 @@ h1 {
   gap: 8px;
   padding: 10px 12px;
   margin-bottom: 8px;
-  background-color: #1a1a1a;
-  border-left: 4px solid chocolate;
+  background-color: var(--gray-100);
+  border-left: 4px solid var(--blue);
   border-radius: 4px;
 }
 
 .match-winner {
-  color: #6fcf97;
-  font-weight: bold;
+  color: var(--blue-dark);
+  font-weight: 700;
 }
 
 .match-verb {
-  color: #888;
-  font-size: 0.85rem;
+  color: var(--gray-700);
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .match-loser {
-  color: #eb5757;
+  color: var(--red);
   text-decoration: line-through;
-  opacity: 0.8;
+  opacity: 0.85;
 }

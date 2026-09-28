@@ -21,7 +21,7 @@ const RankingTable = () => {
       <ol>
         {items.map((item, index) => (
           <li key={index}>
-            {item.name}: {item.score}
+            {item.name}: {item.score}: {item.winrate.toFixed(2)}%
           </li>
         ))}
       </ol>

@@ -1,6 +1,7 @@
 export interface RankingItem {
   name: string;
   score: number;
+  winrate: number;
 }
 export async function GetRanking(): Promise<RankingItem[]> {
   try {

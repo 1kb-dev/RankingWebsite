@@ -10,13 +10,14 @@ import Fight from "./components/Fight";
 
 function App() {
   const [player, setPlayer] = useState<string | null>(null);
+  const [onlinePlayers, setOnlinePlayers] = useState<string[]>([]);
   return (
     <>
       <RankingTable />
       {player === null ? (
-        <GameJoin setPlayer={setPlayer} />
+        <GameJoin setPlayer={setPlayer} setOnlinePlayers={setOnlinePlayers} />
       ) : (
-        <Fight player={player} />
+        <Fight player={player} onlinePlayers={onlinePlayers} />
       )}
       <Matches />
     </>

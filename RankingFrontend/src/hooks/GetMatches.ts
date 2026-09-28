@@ -2,6 +2,7 @@ export interface MatchItems {
   matchId: number;
   winner: string;
   loser: string;
+  time: string;
 }
 
 export async function GetMatches(): Promise<MatchItems[]> {
