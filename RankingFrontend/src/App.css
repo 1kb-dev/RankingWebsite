@@ -1,0 +1,110 @@
+/* ---------- Layout ---------- */
+#root {
+  display: grid;
+  grid-template-columns: repeat(2, 30rem); /* ranking + join side by side */
+  justify-content: center; /* centers the whole grid on x */
+  align-items: start;
+  gap: 40px;
+  padding: 100px 16px 40px;
+  box-sizing: border-box;
+  max-width: none;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* narrow screens: single column, everything stacked */
+@media (max-width: 1100px) {
+  #root {
+    grid-template-columns: min(30rem, 100%);
+  }
+}
+
+/* ---------- Shared panel styles ---------- */
+.ranking-table,
+.game-join,
+.matches {
+  width: min(30rem, 100%);
+  box-sizing: border-box;
+  padding: 20px;
+  color: rgb(231, 141, 24);
+}
+
+h1 {
+  color: chocolate;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* ---------- Ranking table ---------- */
+.ranking-table ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: rank;
+}
+
+.ranking-table li {
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  counter-increment: rank;
+  color: rgb(231, 141, 24);
+  font-weight: bold;
+  padding-left: clamp(16px, 8vw, 100px);
+  padding-top: 10px;
+  margin-bottom: 8px;
+}
+
+.ranking-table li::before {
+  content: counter(rank) ".";
+}
+
+/* ---------- Join game / welcome ---------- */
+.welcome-message {
+  width: min(30rem, 100%);
+  box-sizing: border-box;
+  padding: 20px;
+  color: chocolate;
+}
+
+/* ---------- Matches ---------- */
+.matches {
+  grid-column: 1 / -1; /* takes its own row below the other two */
+  justify-self: center; /* centered on the x axis */
+  border-radius: 8px;
+}
+
+.matches ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.match {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background-color: #1a1a1a;
+  border-left: 4px solid chocolate;
+  border-radius: 4px;
+}
+
+.match-winner {
+  color: #6fcf97;
+  font-weight: bold;
+}
+
+.match-verb {
+  color: #888;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.match-loser {
+  color: #eb5757;
+  text-decoration: line-through;
+  opacity: 0.8;
+}
